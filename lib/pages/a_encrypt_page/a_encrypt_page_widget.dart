@@ -6,6 +6,7 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'a_encrypt_page_model.dart';
 export 'a_encrypt_page_model.dart';
@@ -244,6 +245,52 @@ class _AEncryptPageWidgetState extends State<AEncryptPageWidget> {
                             ),
                           ),
                         ),
+                        if (!isWeb)
+                          Builder(
+                            builder: (context) => Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  8.0, 0.0, 8.0, 0.0),
+                              child: FFButtonWidget(
+                                onPressed: () async {
+                                  if (!isWeb) {
+                                    // share encrypted data as JSON object
+                                    await Share.share(
+                                      '{ \"encrypted_text\": \"${_model.encryptedTextTextController.text}\", \"encryption_key\": \"${_model.encryptionKeyTextController.text}\" }',
+                                      sharePositionOrigin:
+                                          getWidgetBoundingBox(context),
+                                    );
+                                  }
+                                },
+                                text: 'Share Encrypted Data',
+                                icon: const Icon(
+                                  Icons.share,
+                                  size: 24.0,
+                                ),
+                                options: FFButtonOptions(
+                                  width: double.infinity,
+                                  height: 40.0,
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      24.0, 0.0, 24.0, 0.0),
+                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        color: Colors.white,
+                                        letterSpacing: 0.0,
+                                      ),
+                                  elevation: 3.0,
+                                  borderSide: const BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                              ),
+                            ),
+                          ),
                         if (_model.encryptedTextTextController.text != '')
                           Column(
                             mainAxisSize: MainAxisSize.max,
