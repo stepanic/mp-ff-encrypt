@@ -42,7 +42,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/aEncryptPage',
           builder: (context, params) => params.isEmpty
               ? const NavBarPage(initialPage: 'aEncryptPage')
-              : const AEncryptPageWidget(),
+              : const NavBarPage(
+                  initialPage: 'aEncryptPage',
+                  page: AEncryptPageWidget(),
+                ),
         ),
         FFRoute(
           name: 'bDecryptPage',
