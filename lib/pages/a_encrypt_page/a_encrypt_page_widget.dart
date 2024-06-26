@@ -28,8 +28,7 @@ class _AEncryptPageWidgetState extends State<AEncryptPageWidget> {
     super.initState();
     _model = createModel(context, () => AEncryptPageModel());
 
-    _model.inputPlainTextTextController ??=
-        TextEditingController(text: 'some plain text to encrypt');
+    _model.inputPlainTextTextController ??= TextEditingController();
     _model.inputPlainTextFocusNode ??= FocusNode();
 
     _model.encryptedTextTextController ??= TextEditingController();
@@ -245,7 +244,8 @@ class _AEncryptPageWidgetState extends State<AEncryptPageWidget> {
                             ),
                           ),
                         ),
-                        if (!isWeb)
+                        if (!isWeb &&
+                            (_model.encryptedTextTextController.text != ''))
                           Builder(
                             builder: (context) => Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
