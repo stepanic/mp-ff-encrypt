@@ -179,18 +179,44 @@ class _AEncryptPageWidgetState extends State<AEncryptPageWidget> {
                                 .asValidator(context),
                           ),
                         ),
-                        if (_model.inputPlainTextTextController.text == '')
+                        if (_model.inputPlainTextTextController.text != '')
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 8.0, 0.0, 8.0, 0.0),
                             child: FFButtonWidget(
                               onPressed: () async {
-                                // Reset form
+                                // generate encryptionKey
                                 setState(() {
-                                  _model.inputPlainTextTextController?.clear();
-                                  _model.encryptedTextTextController?.clear();
-                                  _model.encryptionKeyTextController?.clear();
+                                  _model.encryptionKeyTextController?.text =
+                                      functions.generateRandomEncryptionKey();
+                                  _model.encryptionKeyTextController
+                                          ?.selection =
+                                      TextSelection.collapsed(
+                                          offset: _model
+                                              .encryptionKeyTextController!
+                                              .text
+                                              .length);
                                 });
+                                // encrypt Plain Text with Encryption Key
+                                _model.encryptedTextAsBase64 =
+                                    await actions.encryptTextAsBase64(
+                                  _model.inputPlainTextTextController.text,
+                                  _model.encryptionKeyTextController.text,
+                                );
+                                // set Encrypted Text
+                                setState(() {
+                                  _model.encryptedTextTextController?.text =
+                                      _model.encryptedTextAsBase64!;
+                                  _model.encryptedTextTextController
+                                          ?.selection =
+                                      TextSelection.collapsed(
+                                          offset: _model
+                                              .encryptedTextTextController!
+                                              .text
+                                              .length);
+                                });
+
+                                setState(() {});
                               },
                               text: 'Clear Plain Text',
                               icon: const Icon(
