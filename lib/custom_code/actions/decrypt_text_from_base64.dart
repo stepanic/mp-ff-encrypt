@@ -7,17 +7,11 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'package:encrypt/encrypt.dart' as encrypt;
-
-Future<String> encryptTextAsBase64(
-  String plainText,
+Future<String?> decryptTextFromBase64(
+  String encryptedTextAsBase64,
   String encryptionKey,
 ) async {
-  final key = encrypt.Key.fromBase64(encryptionKey);
-  final iv = encrypt.IV.fromLength(8);
-  final encrypter = encrypt.Encrypter(encrypt.Salsa20(key));
+  // Add your function code here!
 
-  final encryptedText = encrypter.encrypt(plainText, iv: iv);
-
-  return encryptedText.base64;
+  return 'N/A';
 }
