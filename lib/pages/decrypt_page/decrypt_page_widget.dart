@@ -7,25 +7,25 @@ import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'home_page_model.dart';
-export 'home_page_model.dart';
+import 'decrypt_page_model.dart';
+export 'decrypt_page_model.dart';
 
-class HomePageWidget extends StatefulWidget {
-  const HomePageWidget({super.key});
+class DecryptPageWidget extends StatefulWidget {
+  const DecryptPageWidget({super.key});
 
   @override
-  State<HomePageWidget> createState() => _HomePageWidgetState();
+  State<DecryptPageWidget> createState() => _DecryptPageWidgetState();
 }
 
-class _HomePageWidgetState extends State<HomePageWidget> {
-  late HomePageModel _model;
+class _DecryptPageWidgetState extends State<DecryptPageWidget> {
+  late DecryptPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => HomePageModel());
+    _model = createModel(context, () => DecryptPageModel());
 
     _model.inputPlainTextTextController ??=
         TextEditingController(text: 'some plain text to encrypt');
@@ -91,7 +91,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         Align(
                           alignment: const AlignmentDirectional(0.0, -1.0),
                           child: Text(
-                            'Demo',
+                            'DEMO - decrypt',
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
