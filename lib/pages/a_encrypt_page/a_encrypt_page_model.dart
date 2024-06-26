@@ -15,8 +15,6 @@ class AEncryptPageModel extends FlutterFlowModel<AEncryptPageWidget> {
   TextEditingController? inputPlainTextTextController;
   String? Function(BuildContext, String?)?
       inputPlainTextTextControllerValidator;
-  // Stores action output result for [Custom Action - encryptTextAsBase64] action in ClearPlainText widget.
-  String? encryptedTextAsBase64;
   // Stores action output result for [Custom Action - encryptTextAsBase64] action in EncryptPlainText widget.
   String? encryptedTextAsBase64;
   // State field(s) for EncryptedText widget.

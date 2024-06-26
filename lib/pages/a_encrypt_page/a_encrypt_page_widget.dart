@@ -218,9 +218,9 @@ class _AEncryptPageWidgetState extends State<AEncryptPageWidget> {
 
                                 setState(() {});
                               },
-                              text: 'Clear Plain Text',
+                              text: 'Encrypt Plain Text',
                               icon: const Icon(
-                                Icons.clear,
+                                Icons.enhanced_encryption,
                                 size: 24.0,
                               ),
                               options: FFButtonOptions(
@@ -230,7 +230,7 @@ class _AEncryptPageWidgetState extends State<AEncryptPageWidget> {
                                     24.0, 0.0, 24.0, 0.0),
                                 iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
-                                color: FlutterFlowTheme.of(context).error,
+                                color: FlutterFlowTheme.of(context).primary,
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
@@ -253,42 +253,16 @@ class _AEncryptPageWidgetState extends State<AEncryptPageWidget> {
                                 8.0, 0.0, 8.0, 0.0),
                             child: FFButtonWidget(
                               onPressed: () async {
-                                // generate encryptionKey
+                                // Reset form
                                 setState(() {
-                                  _model.encryptionKeyTextController?.text =
-                                      functions.generateRandomEncryptionKey();
-                                  _model.encryptionKeyTextController
-                                          ?.selection =
-                                      TextSelection.collapsed(
-                                          offset: _model
-                                              .encryptionKeyTextController!
-                                              .text
-                                              .length);
+                                  _model.inputPlainTextTextController?.clear();
+                                  _model.encryptedTextTextController?.clear();
+                                  _model.encryptionKeyTextController?.clear();
                                 });
-                                // encrypt Plain Text with Encryption Key
-                                _model.encryptedTextAsBase64 =
-                                    await actions.encryptTextAsBase64(
-                                  _model.inputPlainTextTextController.text,
-                                  _model.encryptionKeyTextController.text,
-                                );
-                                // set Encrypted Text
-                                setState(() {
-                                  _model.encryptedTextTextController?.text =
-                                      _model.encryptedTextAsBase64!;
-                                  _model.encryptedTextTextController
-                                          ?.selection =
-                                      TextSelection.collapsed(
-                                          offset: _model
-                                              .encryptedTextTextController!
-                                              .text
-                                              .length);
-                                });
-
-                                setState(() {});
                               },
-                              text: 'Encrypt Plain Text',
+                              text: 'Clear Plain Text',
                               icon: const Icon(
-                                Icons.enhanced_encryption,
+                                Icons.clear,
                                 size: 24.0,
                               ),
                               options: FFButtonOptions(
@@ -298,7 +272,7 @@ class _AEncryptPageWidgetState extends State<AEncryptPageWidget> {
                                     24.0, 0.0, 24.0, 0.0),
                                 iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
-                                color: FlutterFlowTheme.of(context).primary,
+                                color: FlutterFlowTheme.of(context).error,
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
