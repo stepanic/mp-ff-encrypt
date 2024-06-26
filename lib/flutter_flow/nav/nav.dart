@@ -38,18 +38,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, _) => const NavBarPage(),
         ),
         FFRoute(
-          name: 'EncryptPage',
-          path: '/encryptPage',
+          name: 'aEncryptPage',
+          path: '/aEncryptPage',
           builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'EncryptPage')
-              : const EncryptPageWidget(),
+              ? const NavBarPage(initialPage: 'aEncryptPage')
+              : const AEncryptPageWidget(),
         ),
         FFRoute(
-          name: 'DecryptPage',
-          path: '/decryptPage',
+          name: 'bDecryptPage',
+          path: '/bDecryptPage',
           builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'DecryptPage')
-              : const DecryptPageWidget(),
+              ? const NavBarPage(initialPage: 'bDecryptPage')
+              : const BDecryptPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
