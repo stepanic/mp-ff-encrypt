@@ -13,7 +13,7 @@ Future<String> encryptTextAsBase64(
   String plainText,
   String encryptionKey,
 ) async {
-  final key = encrypt.Key.fromBase64(encryptionKey);
+  final key = encrypt.Key.fromUtf8(encryptionKey);
   final iv = encrypt.IV.fromLength(8);
   final encrypter = encrypt.Encrypter(encrypt.Salsa20(key));
 
