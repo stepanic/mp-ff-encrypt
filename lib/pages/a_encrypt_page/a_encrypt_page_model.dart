@@ -10,6 +10,8 @@ class AEncryptPageModel extends FlutterFlowModel<AEncryptPageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // State field(s) for Column widget.
+  ScrollController? columnController;
   // State field(s) for InputPlainText widget.
   FocusNode? inputPlainTextFocusNode;
   TextEditingController? inputPlainTextTextController;
@@ -27,11 +29,14 @@ class AEncryptPageModel extends FlutterFlowModel<AEncryptPageWidget> {
   String? Function(BuildContext, String?)? encryptionKeyTextControllerValidator;
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    columnController = ScrollController();
+  }
 
   @override
   void dispose() {
     unfocusNode.dispose();
+    columnController?.dispose();
     inputPlainTextFocusNode?.dispose();
     inputPlainTextTextController?.dispose();
 
