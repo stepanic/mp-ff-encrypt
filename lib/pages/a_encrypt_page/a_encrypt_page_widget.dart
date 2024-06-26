@@ -75,7 +75,6 @@ class _AEncryptPageWidgetState extends State<AEncryptPageWidget> {
         body: SafeArea(
           top: true,
           child: SingleChildScrollView(
-            controller: _model.columnController,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -216,13 +215,6 @@ class _AEncryptPageWidgetState extends State<AEncryptPageWidget> {
                                               .text
                                               .length);
                                 });
-                                // scroll to end to show encrypted data
-                                await _model.columnController?.animateTo(
-                                  _model.columnController!.position
-                                      .maxScrollExtent,
-                                  duration: const Duration(milliseconds: 100),
-                                  curve: Curves.ease,
-                                );
 
                                 setState(() {});
                               },
