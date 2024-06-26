@@ -380,7 +380,12 @@ class _AEncryptPageWidgetState extends State<AEncryptPageWidget> {
                                             .alternate,
                                         width: 2.0,
                                       ),
-                                      borderRadius: BorderRadius.circular(8.0),
+                                      borderRadius: const BorderRadius.only(
+                                        bottomLeft: Radius.circular(0.0),
+                                        bottomRight: Radius.circular(0.0),
+                                        topLeft: Radius.circular(8.0),
+                                        topRight: Radius.circular(8.0),
+                                      ),
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
@@ -388,7 +393,12 @@ class _AEncryptPageWidgetState extends State<AEncryptPageWidget> {
                                             .primary,
                                         width: 2.0,
                                       ),
-                                      borderRadius: BorderRadius.circular(8.0),
+                                      borderRadius: const BorderRadius.only(
+                                        bottomLeft: Radius.circular(0.0),
+                                        bottomRight: Radius.circular(0.0),
+                                        topLeft: Radius.circular(8.0),
+                                        topRight: Radius.circular(8.0),
+                                      ),
                                     ),
                                     errorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
@@ -396,7 +406,12 @@ class _AEncryptPageWidgetState extends State<AEncryptPageWidget> {
                                             FlutterFlowTheme.of(context).error,
                                         width: 2.0,
                                       ),
-                                      borderRadius: BorderRadius.circular(8.0),
+                                      borderRadius: const BorderRadius.only(
+                                        bottomLeft: Radius.circular(0.0),
+                                        bottomRight: Radius.circular(0.0),
+                                        topLeft: Radius.circular(8.0),
+                                        topRight: Radius.circular(8.0),
+                                      ),
                                     ),
                                     focusedErrorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
@@ -404,7 +419,12 @@ class _AEncryptPageWidgetState extends State<AEncryptPageWidget> {
                                             FlutterFlowTheme.of(context).error,
                                         width: 2.0,
                                       ),
-                                      borderRadius: BorderRadius.circular(8.0),
+                                      borderRadius: const BorderRadius.only(
+                                        bottomLeft: Radius.circular(0.0),
+                                        bottomRight: Radius.circular(0.0),
+                                        topLeft: Radius.circular(8.0),
+                                        topRight: Radius.circular(8.0),
+                                      ),
                                     ),
                                   ),
                                   style: FlutterFlowTheme.of(context)
@@ -473,7 +493,12 @@ class _AEncryptPageWidgetState extends State<AEncryptPageWidget> {
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),
-                                    borderRadius: BorderRadius.circular(8.0),
+                                    borderRadius: const BorderRadius.only(
+                                      bottomLeft: Radius.circular(8.0),
+                                      bottomRight: Radius.circular(8.0),
+                                      topLeft: Radius.circular(0.0),
+                                      topRight: Radius.circular(0.0),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -515,7 +540,12 @@ class _AEncryptPageWidgetState extends State<AEncryptPageWidget> {
                                             .alternate,
                                         width: 2.0,
                                       ),
-                                      borderRadius: BorderRadius.circular(8.0),
+                                      borderRadius: const BorderRadius.only(
+                                        bottomLeft: Radius.circular(0.0),
+                                        bottomRight: Radius.circular(0.0),
+                                        topLeft: Radius.circular(8.0),
+                                        topRight: Radius.circular(8.0),
+                                      ),
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
@@ -523,7 +553,12 @@ class _AEncryptPageWidgetState extends State<AEncryptPageWidget> {
                                             .primary,
                                         width: 2.0,
                                       ),
-                                      borderRadius: BorderRadius.circular(8.0),
+                                      borderRadius: const BorderRadius.only(
+                                        bottomLeft: Radius.circular(0.0),
+                                        bottomRight: Radius.circular(0.0),
+                                        topLeft: Radius.circular(8.0),
+                                        topRight: Radius.circular(8.0),
+                                      ),
                                     ),
                                     errorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
@@ -531,7 +566,12 @@ class _AEncryptPageWidgetState extends State<AEncryptPageWidget> {
                                             FlutterFlowTheme.of(context).error,
                                         width: 2.0,
                                       ),
-                                      borderRadius: BorderRadius.circular(8.0),
+                                      borderRadius: const BorderRadius.only(
+                                        bottomLeft: Radius.circular(0.0),
+                                        bottomRight: Radius.circular(0.0),
+                                        topLeft: Radius.circular(8.0),
+                                        topRight: Radius.circular(8.0),
+                                      ),
                                     ),
                                     focusedErrorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
@@ -539,7 +579,12 @@ class _AEncryptPageWidgetState extends State<AEncryptPageWidget> {
                                             FlutterFlowTheme.of(context).error,
                                         width: 2.0,
                                       ),
-                                      borderRadius: BorderRadius.circular(8.0),
+                                      borderRadius: const BorderRadius.only(
+                                        bottomLeft: Radius.circular(0.0),
+                                        bottomRight: Radius.circular(0.0),
+                                        topLeft: Radius.circular(8.0),
+                                        topRight: Radius.circular(8.0),
+                                      ),
                                     ),
                                   ),
                                   style: FlutterFlowTheme.of(context)
@@ -608,7 +653,12 @@ class _AEncryptPageWidgetState extends State<AEncryptPageWidget> {
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),
-                                    borderRadius: BorderRadius.circular(8.0),
+                                    borderRadius: const BorderRadius.only(
+                                      bottomLeft: Radius.circular(8.0),
+                                      bottomRight: Radius.circular(8.0),
+                                      topLeft: Radius.circular(0.0),
+                                      topRight: Radius.circular(0.0),
+                                    ),
                                   ),
                                 ),
                               ),
