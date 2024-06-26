@@ -116,7 +116,7 @@ class _NavBarPageState extends State<NavBarPage> {
           unselectedItemColor: const Color(0x8A000000),
           showSelectedLabels: true,
           showUnselectedLabels: true,
-          type: BottomNavigationBarType.shifting,
+          type: BottomNavigationBarType.fixed,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(
