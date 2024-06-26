@@ -179,6 +179,48 @@ class _AEncryptPageWidgetState extends State<AEncryptPageWidget> {
                                 .asValidator(context),
                           ),
                         ),
+                        if (_model.inputPlainTextTextController.text == '')
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                8.0, 0.0, 8.0, 0.0),
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                // Reset form
+                                setState(() {
+                                  _model.inputPlainTextTextController?.clear();
+                                  _model.encryptedTextTextController?.clear();
+                                  _model.encryptionKeyTextController?.clear();
+                                });
+                              },
+                              text: 'Clear Plain Text',
+                              icon: const Icon(
+                                Icons.clear,
+                                size: 24.0,
+                              ),
+                              options: FFButtonOptions(
+                                width: double.infinity,
+                                height: 40.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    24.0, 0.0, 24.0, 0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).error,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: Colors.white,
+                                      letterSpacing: 0.0,
+                                    ),
+                                elevation: 3.0,
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                            ),
+                          ),
                         if (_model.inputPlainTextTextController.text != '')
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
