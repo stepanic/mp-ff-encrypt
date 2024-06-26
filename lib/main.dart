@@ -103,36 +103,39 @@ class _NavBarPageState extends State<NavBarPage> {
 
     return Scaffold(
       body: _currentPage ?? tabs[_currentPageName],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex,
-        onTap: (i) => setState(() {
-          _currentPage = null;
-          _currentPageName = tabs.keys.toList()[i];
-        }),
-        backgroundColor: Colors.white,
-        selectedItemColor: FlutterFlowTheme.of(context).primary,
-        unselectedItemColor: const Color(0x8A000000),
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
-        type: BottomNavigationBarType.fixed,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.enhanced_encryption,
-              size: 24.0,
+      bottomNavigationBar: /*LOCAL_START*/ Padding(
+        padding: MediaQuery.of(context).viewInsets,
+        child: /*LOCAL_END*/ BottomNavigationBar(
+          currentIndex: currentIndex,
+          onTap: (i) => setState(() {
+            _currentPage = null;
+            _currentPageName = tabs.keys.toList()[i];
+          }),
+          backgroundColor: Colors.white,
+          selectedItemColor: FlutterFlowTheme.of(context).primary,
+          unselectedItemColor: const Color(0x8A000000),
+          showSelectedLabels: true,
+          showUnselectedLabels: true,
+          type: BottomNavigationBarType.shifting,
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.enhanced_encryption,
+                size: 24.0,
+              ),
+              label: 'Encrypt',
+              tooltip: '',
             ),
-            label: 'Encrypt',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.lock_open,
-              size: 24.0,
-            ),
-            label: 'Decrypt',
-            tooltip: '',
-          )
-        ],
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.lock_open,
+                size: 24.0,
+              ),
+              label: 'Decrypt',
+              tooltip: '',
+            )
+          ],
+        ),
       ),
     );
   }
