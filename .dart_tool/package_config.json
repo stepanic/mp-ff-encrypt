@@ -2,6 +2,18 @@
   "configVersion": 2,
   "packages": [
     {
+      "name": "args",
+      "rootUri": "file:///Users/stepanic/.pub-cache/hosted/pub.dev/args-2.5.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "asn1lib",
+      "rootUri": "file:///Users/stepanic/.pub-cache/hosted/pub.dev/asn1lib-1.5.3",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "async",
       "rootUri": "file:///Users/stepanic/.pub-cache/hosted/pub.dev/async-2.11.0",
       "packageUri": "lib/",
@@ -72,6 +84,12 @@
       "rootUri": "file:///Users/stepanic/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.8",
       "packageUri": "lib/",
       "languageVersion": "3.1"
+    },
+    {
+      "name": "encrypt",
+      "rootUri": "file:///Users/stepanic/.pub-cache/hosted/pub.dev/encrypt-5.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
     },
     {
       "name": "fake_async",
@@ -572,7 +590,7 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2024-06-26T14:52:54.241101Z",
+  "generated": "2024-06-26T14:53:48.807813Z",
   "generator": "pub",
   "generatorVersion": "3.4.3",
   "flutterRoot": "file:///Users/stepanic/development/flutter",
