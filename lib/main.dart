@@ -84,7 +84,7 @@ class NavBarPage extends StatefulWidget {
 
 /// This is the private State class that goes with NavBarPage.
 class _NavBarPageState extends State<NavBarPage> {
-  String _currentPageName = 'EncryptPage';
+  String _currentPageName = 'aEncryptPage';
   late Widget? _currentPage;
 
   @override
@@ -97,8 +97,8 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'EncryptPage': const EncryptPageWidget(),
-      'DecryptPage': const DecryptPageWidget(),
+      'aEncryptPage': const AEncryptPageWidget(),
+      'bDecryptPage': const BDecryptPageWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 

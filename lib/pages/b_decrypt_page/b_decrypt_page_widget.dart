@@ -7,25 +7,25 @@ import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'encrypt_page_model.dart';
-export 'encrypt_page_model.dart';
+import 'b_decrypt_page_model.dart';
+export 'b_decrypt_page_model.dart';
 
-class EncryptPageWidget extends StatefulWidget {
-  const EncryptPageWidget({super.key});
+class BDecryptPageWidget extends StatefulWidget {
+  const BDecryptPageWidget({super.key});
 
   @override
-  State<EncryptPageWidget> createState() => _EncryptPageWidgetState();
+  State<BDecryptPageWidget> createState() => _BDecryptPageWidgetState();
 }
 
-class _EncryptPageWidgetState extends State<EncryptPageWidget> {
-  late EncryptPageModel _model;
+class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
+  late BDecryptPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => EncryptPageModel());
+    _model = createModel(context, () => BDecryptPageModel());
 
     _model.inputPlainTextTextController ??=
         TextEditingController(text: 'some plain text to encrypt');
@@ -91,7 +91,7 @@ class _EncryptPageWidgetState extends State<EncryptPageWidget> {
                         Align(
                           alignment: const AlignmentDirectional(0.0, -1.0),
                           child: Text(
-                            'DEMO - encrypt',
+                            'DEMO - decrypt',
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(

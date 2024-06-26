@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'decrypt_page_widget.dart' show DecryptPageWidget;
+import 'a_encrypt_page_widget.dart' show AEncryptPageWidget;
 import 'package:flutter/material.dart';
 
-class DecryptPageModel extends FlutterFlowModel<DecryptPageWidget> {
+class AEncryptPageModel extends FlutterFlowModel<AEncryptPageWidget> {
   ///  Local state fields for this page.
 
   String encryptionKey = 'abcd1234';
