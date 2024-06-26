@@ -249,6 +249,56 @@ class _AEncryptPageWidgetState extends State<AEncryptPageWidget> {
                           ),
                         if (!isWeb &&
                             (_model.encryptedTextTextController.text != ''))
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                8.0, 0.0, 8.0, 0.0),
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                // email encrypted data
+                                await launchUrl(Uri(
+                                    scheme: 'mailto',
+                                    path: 'stepanic.matija@gmail.com',
+                                    query: {
+                                      'subject': 'encrypt.FF.hr',
+                                      'body':
+                                          '{ \"encrypted_text\": \"${_model.encryptedTextTextController.text}\", \"encryption_key\": \"${_model.encryptionKeyTextController.text}\" }',
+                                    }
+                                        .entries
+                                        .map((MapEntry<String, String> e) =>
+                                            '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+                                        .join('&')));
+                              },
+                              text: 'Email Encrypted Data',
+                              icon: const Icon(
+                                Icons.mail_lock,
+                                size: 24.0,
+                              ),
+                              options: FFButtonOptions(
+                                width: double.infinity,
+                                height: 40.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    24.0, 0.0, 24.0, 0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).primary,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: Colors.white,
+                                      letterSpacing: 0.0,
+                                    ),
+                                elevation: 3.0,
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                            ),
+                          ),
+                        if (!isWeb &&
+                            (_model.encryptedTextTextController.text != ''))
                           Builder(
                             builder: (context) => Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
