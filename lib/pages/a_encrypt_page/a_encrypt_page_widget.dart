@@ -257,7 +257,7 @@ class _AEncryptPageWidgetState extends State<AEncryptPageWidget> {
                                 // email encrypted data
                                 await launchUrl(Uri(
                                     scheme: 'mailto',
-                                    path: 'stepanic.matija@gmail.com',
+                                    path: ' ',
                                     query: {
                                       'subject': 'encrypt.FF.hr',
                                       'body':
