@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -106,6 +107,17 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           child: TextFormField(
                             controller: _model.inputPlainTextTextController,
                             focusNode: _model.inputPlainTextFocusNode,
+                            onChanged: (_) => EasyDebounce.debounce(
+                              '_model.inputPlainTextTextController',
+                              const Duration(milliseconds: 2000),
+                              () async {
+                                // delete EncryptedText and EncryptionKey
+                                setState(() {
+                                  _model.encryptedTextTextController?.clear();
+                                  _model.encryptionKeyTextController?.clear();
+                                });
+                              },
+                            ),
                             autofocus: true,
                             obscureText: false,
                             decoration: InputDecoration(
