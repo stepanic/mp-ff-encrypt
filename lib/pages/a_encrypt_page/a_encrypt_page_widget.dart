@@ -109,7 +109,7 @@ class _AEncryptPageWidgetState extends State<AEncryptPageWidget> {
                             focusNode: _model.inputPlainTextFocusNode,
                             onChanged: (_) => EasyDebounce.debounce(
                               '_model.inputPlainTextTextController',
-                              const Duration(milliseconds: 2000),
+                              const Duration(milliseconds: 0),
                               () async {
                                 // delete EncryptedText and EncryptionKey
                                 setState(() {
