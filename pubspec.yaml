@@ -30,7 +30,6 @@ dependencies:
   collection: 1.18.0
   easy_debounce: 2.0.1
   encrypt: ^5.0.3
-  floating_bottom_navigation_bar: 1.5.2
   flutter_animate: 4.5.0
   flutter_cache_manager: 3.3.1
   font_awesome_flutter: 10.6.0
@@ -45,6 +44,7 @@ dependencies:
   path_provider_foundation: 2.4.0
   path_provider_platform_interface: 2.1.2
   provider: 6.1.2
+  share_plus: 9.0.0
   shared_preferences: 2.2.2
   shared_preferences_android: 2.2.1
   shared_preferences_foundation: 2.3.4
