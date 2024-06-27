@@ -59,16 +59,35 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
-          title: Text(
-            'FF Encrypt',
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Outfit',
-                  color: Colors.white,
-                  fontSize: 22.0,
-                  letterSpacing: 0.0,
-                ),
+          title: Align(
+            alignment: const AlignmentDirectional(-1.0, -1.0),
+            child: Text(
+              'encrypt.FF.hr',
+              textAlign: TextAlign.center,
+              style: FlutterFlowTheme.of(context).headlineMedium.override(
+                    fontFamily: 'Outfit',
+                    color: Colors.white,
+                    fontSize: 22.0,
+                    letterSpacing: 0.0,
+                  ),
+            ),
           ),
-          actions: const [],
+          actions: [
+            Align(
+              alignment: const AlignmentDirectional(0.0, 0.0),
+              child: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                child: Text(
+                  'DEMO',
+                  style: FlutterFlowTheme.of(context).headlineMedium.override(
+                        fontFamily: 'Outfit',
+                        color: Colors.white,
+                        letterSpacing: 0.0,
+                      ),
+                ),
+              ),
+            ),
+          ],
           centerTitle: false,
           elevation: 2.0,
         ),
@@ -89,16 +108,20 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Align(
-                          alignment: const AlignmentDirectional(0.0, -1.0),
-                          child: Text(
-                            'DEMO - decrypt',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  fontSize: 24.0,
-                                  letterSpacing: 0.0,
-                                ),
+                          alignment: const AlignmentDirectional(1.0, -1.0),
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 8.0, 0.0),
+                            child: Text(
+                              'Decryption',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    fontSize: 24.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
                           ),
                         ),
                         Padding(
