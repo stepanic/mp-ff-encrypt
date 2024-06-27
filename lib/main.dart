@@ -135,10 +135,10 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.enhanced_encryption,
+              Icons.question_mark,
               size: 24.0,
             ),
-            label: 'Encrypt',
+            label: 'About',
             tooltip: '',
           )
         ],
