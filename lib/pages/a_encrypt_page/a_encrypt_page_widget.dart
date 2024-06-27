@@ -60,7 +60,7 @@ class _AEncryptPageWidgetState extends State<AEncryptPageWidget> {
           backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
           title: Text(
-            'FF Encrypt',
+            'encrypt.FF.hr',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Outfit',
                   color: Colors.white,
