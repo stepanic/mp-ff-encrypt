@@ -98,6 +98,7 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'aEncryptPage': const AEncryptPageWidget(),
       'bDecryptPage': const BDecryptPageWidget(),
+      'cAbout': const CAboutWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
