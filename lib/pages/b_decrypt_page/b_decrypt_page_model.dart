@@ -10,21 +10,16 @@ class BDecryptPageModel extends FlutterFlowModel<BDecryptPageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // State field(s) for InputPlainText widget.
-  FocusNode? inputPlainTextFocusNode;
-  TextEditingController? inputPlainTextTextController;
-  String? Function(BuildContext, String?)?
-      inputPlainTextTextControllerValidator;
-  // Stores action output result for [Custom Action - encryptTextAsBase64] action in EncryptPlainText widget.
-  String? encryptedTextAsBase64;
-  // State field(s) for EncryptedText widget.
-  FocusNode? encryptedTextFocusNode;
-  TextEditingController? encryptedTextTextController;
-  String? Function(BuildContext, String?)? encryptedTextTextControllerValidator;
   // State field(s) for EncryptionKey widget.
   FocusNode? encryptionKeyFocusNode;
   TextEditingController? encryptionKeyTextController;
   String? Function(BuildContext, String?)? encryptionKeyTextControllerValidator;
+  // State field(s) for EncryptedText widget.
+  FocusNode? encryptedTextFocusNode;
+  TextEditingController? encryptedTextTextController;
+  String? Function(BuildContext, String?)? encryptedTextTextControllerValidator;
+  // Stores action output result for [Custom Action - decryptTextFromBase64] action in DecryptEncryptedText widget.
+  String? decryptedPlainText;
 
   @override
   void initState(BuildContext context) {}
@@ -32,13 +27,10 @@ class BDecryptPageModel extends FlutterFlowModel<BDecryptPageWidget> {
   @override
   void dispose() {
     unfocusNode.dispose();
-    inputPlainTextFocusNode?.dispose();
-    inputPlainTextTextController?.dispose();
+    encryptionKeyFocusNode?.dispose();
+    encryptionKeyTextController?.dispose();
 
     encryptedTextFocusNode?.dispose();
     encryptedTextTextController?.dispose();
-
-    encryptionKeyFocusNode?.dispose();
-    encryptionKeyTextController?.dispose();
   }
 }

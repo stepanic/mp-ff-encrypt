@@ -2,10 +2,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
-import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'b_decrypt_page_model.dart';
 export 'b_decrypt_page_model.dart';
@@ -27,15 +24,11 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
     super.initState();
     _model = createModel(context, () => BDecryptPageModel());
 
-    _model.inputPlainTextTextController ??=
-        TextEditingController(text: 'some plain text to encrypt');
-    _model.inputPlainTextFocusNode ??= FocusNode();
+    _model.encryptionKeyTextController ??= TextEditingController();
+    _model.encryptionKeyFocusNode ??= FocusNode();
 
     _model.encryptedTextTextController ??= TextEditingController();
     _model.encryptedTextFocusNode ??= FocusNode();
-
-    _model.encryptionKeyTextController ??= TextEditingController();
-    _model.encryptionKeyFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -128,23 +121,13 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               8.0, 0.0, 8.0, 0.0),
                           child: TextFormField(
-                            controller: _model.inputPlainTextTextController,
-                            focusNode: _model.inputPlainTextFocusNode,
-                            onChanged: (_) => EasyDebounce.debounce(
-                              '_model.inputPlainTextTextController',
-                              const Duration(milliseconds: 2000),
-                              () async {
-                                // delete EncryptedText and EncryptionKey
-                                setState(() {
-                                  _model.encryptedTextTextController?.clear();
-                                  _model.encryptionKeyTextController?.clear();
-                                });
-                              },
-                            ),
+                            controller: _model.encryptionKeyTextController,
+                            focusNode: _model.encryptionKeyFocusNode,
                             autofocus: true,
+                            readOnly: true,
                             obscureText: false,
                             decoration: InputDecoration(
-                              labelText: 'Plain Text for encryption',
+                              labelText: 'Encryption Key',
                               labelStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
@@ -153,7 +136,7 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               hintText:
-                                  'please insert here string which you want to encrypt',
+                                  'please insert the related encryption key',
                               hintStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
@@ -195,76 +178,11 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
                                   fontFamily: 'Readex Pro',
                                   letterSpacing: 0.0,
                                 ),
-                            maxLines: 5,
-                            minLines: 5,
+                            maxLines: 2,
+                            minLines: 2,
                             validator: _model
-                                .inputPlainTextTextControllerValidator
+                                .encryptionKeyTextControllerValidator
                                 .asValidator(context),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              8.0, 0.0, 8.0, 0.0),
-                          child: FFButtonWidget(
-                            onPressed: () async {
-                              // generate encryptionKey
-                              setState(() {
-                                _model.encryptionKeyTextController?.text =
-                                    functions.generateRandomEncryptionKey();
-                                _model.encryptionKeyTextController?.selection =
-                                    TextSelection.collapsed(
-                                        offset: _model
-                                            .encryptionKeyTextController!
-                                            .text
-                                            .length);
-                              });
-                              // encrypt Plain Text with Encryption Key
-                              _model.encryptedTextAsBase64 =
-                                  await actions.encryptTextAsBase64(
-                                _model.inputPlainTextTextController.text,
-                                _model.encryptionKeyTextController.text,
-                              );
-                              // set Encrypted Text
-                              setState(() {
-                                _model.encryptedTextTextController?.text =
-                                    _model.encryptedTextAsBase64!;
-                                _model.encryptedTextTextController?.selection =
-                                    TextSelection.collapsed(
-                                        offset: _model
-                                            .encryptedTextTextController!
-                                            .text
-                                            .length);
-                              });
-
-                              setState(() {});
-                            },
-                            text: 'Encrypt Plain Text',
-                            icon: const Icon(
-                              Icons.enhanced_encryption,
-                              size: 24.0,
-                            ),
-                            options: FFButtonOptions(
-                              width: double.infinity,
-                              height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).primary,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: Colors.white,
-                                    letterSpacing: 0.0,
-                                  ),
-                              elevation: 3.0,
-                              borderSide: const BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
                           ),
                         ),
                         if (_model.encryptedTextTextController.text != '')
@@ -290,7 +208,8 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
                                           fontSize: 14.0,
                                           letterSpacing: 0.0,
                                         ),
-                                    hintText: '???',
+                                    hintText:
+                                        'please insert the base64 string which you want to decrypt',
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
@@ -303,7 +222,12 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
                                             .alternate,
                                         width: 2.0,
                                       ),
-                                      borderRadius: BorderRadius.circular(8.0),
+                                      borderRadius: const BorderRadius.only(
+                                        bottomLeft: Radius.circular(0.0),
+                                        bottomRight: Radius.circular(0.0),
+                                        topLeft: Radius.circular(8.0),
+                                        topRight: Radius.circular(8.0),
+                                      ),
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
@@ -311,7 +235,12 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
                                             .primary,
                                         width: 2.0,
                                       ),
-                                      borderRadius: BorderRadius.circular(8.0),
+                                      borderRadius: const BorderRadius.only(
+                                        bottomLeft: Radius.circular(0.0),
+                                        bottomRight: Radius.circular(0.0),
+                                        topLeft: Radius.circular(8.0),
+                                        topRight: Radius.circular(8.0),
+                                      ),
                                     ),
                                     errorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
@@ -319,7 +248,12 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
                                             FlutterFlowTheme.of(context).error,
                                         width: 2.0,
                                       ),
-                                      borderRadius: BorderRadius.circular(8.0),
+                                      borderRadius: const BorderRadius.only(
+                                        bottomLeft: Radius.circular(0.0),
+                                        bottomRight: Radius.circular(0.0),
+                                        topLeft: Radius.circular(8.0),
+                                        topRight: Radius.circular(8.0),
+                                      ),
                                     ),
                                     focusedErrorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
@@ -327,7 +261,12 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
                                             FlutterFlowTheme.of(context).error,
                                         width: 2.0,
                                       ),
-                                      borderRadius: BorderRadius.circular(8.0),
+                                      borderRadius: const BorderRadius.only(
+                                        bottomLeft: Radius.circular(0.0),
+                                        bottomRight: Radius.circular(0.0),
+                                        topLeft: Radius.circular(8.0),
+                                        topRight: Radius.circular(8.0),
+                                      ),
                                     ),
                                   ),
                                   style: FlutterFlowTheme.of(context)
@@ -348,17 +287,16 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
                                     8.0, 0.0, 8.0, 0.0),
                                 child: FFButtonWidget(
                                   onPressed: () async {
-                                    // Encrypted Text to clipboard
-                                    await Clipboard.setData(ClipboardData(
-                                        text: _model
-                                            .encryptedTextTextController.text));
-                                    // show is copied
-                                    ScaffoldMessenger.of(context)
-                                        .clearSnackBars();
+                                    // decrypt Base64 with key to plain text
+                                    _model.decryptedPlainText =
+                                        await actions.decryptTextFromBase64(
+                                      _model.encryptedTextTextController.text,
+                                      _model.encryptionKeyTextController.text,
+                                    );
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                         content: Text(
-                                          'Copied Encrypted Text',
+                                          _model.decryptedPlainText!,
                                           style: TextStyle(
                                             color: FlutterFlowTheme.of(context)
                                                 .primaryText,
@@ -370,10 +308,12 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
                                                 .secondary,
                                       ),
                                     );
+
+                                    setState(() {});
                                   },
-                                  text: 'Copy Encrypted Text',
+                                  text: 'Decrypt Encrypted Text',
                                   icon: const Icon(
-                                    Icons.content_copy,
+                                    Icons.lock_open,
                                     size: 24.0,
                                   ),
                                   options: FFButtonOptions(
@@ -396,142 +336,12 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        if (_model.encryptionKeyTextController.text != '')
-                          Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    8.0, 0.0, 8.0, 0.0),
-                                child: TextFormField(
-                                  controller:
-                                      _model.encryptionKeyTextController,
-                                  focusNode: _model.encryptionKeyFocusNode,
-                                  autofocus: true,
-                                  readOnly: true,
-                                  obscureText: false,
-                                  decoration: InputDecoration(
-                                    labelText: 'Encryption Key',
-                                    labelStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          fontSize: 14.0,
-                                          letterSpacing: 0.0,
-                                        ),
-                                    hintText: '???',
-                                    hintStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          letterSpacing: 0.0,
-                                        ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .alternate,
-                                        width: 2.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
+                                    borderRadius: const BorderRadius.only(
+                                      bottomLeft: Radius.circular(8.0),
+                                      bottomRight: Radius.circular(8.0),
+                                      topLeft: Radius.circular(0.0),
+                                      topRight: Radius.circular(0.0),
                                     ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        width: 2.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    errorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
-                                        width: 2.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    focusedErrorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
-                                        width: 2.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                  ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        letterSpacing: 0.0,
-                                      ),
-                                  maxLines: 2,
-                                  minLines: 2,
-                                  validator: _model
-                                      .encryptionKeyTextControllerValidator
-                                      .asValidator(context),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    8.0, 0.0, 8.0, 0.0),
-                                child: FFButtonWidget(
-                                  onPressed: () async {
-                                    // Encrypted Key to clipboard
-                                    await Clipboard.setData(ClipboardData(
-                                        text: _model
-                                            .encryptionKeyTextController.text));
-                                    // show is copied
-                                    ScaffoldMessenger.of(context)
-                                        .clearSnackBars();
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                          'Copied Encryption Key',
-                                          style: TextStyle(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                          ),
-                                        ),
-                                        duration: const Duration(milliseconds: 4000),
-                                        backgroundColor:
-                                            FlutterFlowTheme.of(context)
-                                                .secondary,
-                                      ),
-                                    );
-                                  },
-                                  text: 'Copy Encryption Key',
-                                  icon: const Icon(
-                                    Icons.content_copy,
-                                    size: 24.0,
-                                  ),
-                                  options: FFButtonOptions(
-                                    width: double.infinity,
-                                    height: 40.0,
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        24.0, 0.0, 24.0, 0.0),
-                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 0.0),
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          color: Colors.white,
-                                          letterSpacing: 0.0,
-                                        ),
-                                    elevation: 3.0,
-                                    borderSide: const BorderSide(
-                                      color: Colors.transparent,
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
                                 ),
                               ),
