@@ -134,6 +134,14 @@ class _NavBarPageState extends State<NavBarPage> {
               ),
               label: 'Decrypt',
               tooltip: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.question_mark,
+                size: 24.0,
+              ),
+              label: 'About',
+              tooltip: '',
             )
           ],
         ),
