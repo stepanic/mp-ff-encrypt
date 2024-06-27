@@ -53,6 +53,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => params.isEmpty
               ? const NavBarPage(initialPage: 'bDecryptPage')
               : const BDecryptPageWidget(),
+        ),
+        FFRoute(
+          name: 'cAbout',
+          path: '/cAbout',
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'cAbout')
+              : const NavBarPage(
+                  initialPage: 'cAbout',
+                  page: CAboutWidget(),
+                ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

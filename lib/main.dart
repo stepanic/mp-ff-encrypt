@@ -98,6 +98,7 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'aEncryptPage': const AEncryptPageWidget(),
       'bDecryptPage': const BDecryptPageWidget(),
+      'cAbout': const CAboutWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -130,6 +131,14 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 24.0,
             ),
             label: 'Decrypt',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.enhanced_encryption,
+              size: 24.0,
+            ),
+            label: 'Encrypt',
             tooltip: '',
           )
         ],
