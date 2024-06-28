@@ -779,21 +779,15 @@ class _AEncryptPageWidgetState extends State<AEncryptPageWidget> {
                                 8.0, 0.0, 8.0, 0.0),
                             child: FFButtonWidget(
                               onPressed: () async {
+                                // workaround with appstate
+                                FFAppState().encryptionKey =
+                                    _model.encryptionKeyTextController.text;
+                                FFAppState().encryptedText =
+                                    _model.encryptedTextTextController.text;
+                                setState(() {});
                                 // pass data to decrypt page
 
-                                context.pushNamed(
-                                  'bDecryptPage',
-                                  queryParameters: {
-                                    'encryptionKey': serializeParam(
-                                      _model.encryptionKeyTextController.text,
-                                      ParamType.String,
-                                    ),
-                                    'encryptedText': serializeParam(
-                                      _model.encryptedTextTextController.text,
-                                      ParamType.String,
-                                    ),
-                                  }.withoutNulls,
-                                );
+                                context.pushNamed('bDecryptPage');
                               },
                               text: 'Test Decryption',
                               icon: const Icon(
