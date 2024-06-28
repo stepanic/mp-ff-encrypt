@@ -8,21 +8,34 @@ import 'package:flutter/material.dart';
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 import 'package:encrypt/encrypt.dart' as encrypt;
+import 'dart:convert';
 
 Future<String?> decryptTextFromBase64(
   String encryptedTextAsBase64,
   String encryptionKey,
 ) async {
-  // Add your function code here!
+  print(encryptedTextAsBase64);
+  print(encryptionKey);
 
-  // Convert the base64 encoded key and the encrypted text
-  final key = encrypt.Key.fromBase64(encryptionKey);
-  final iv = encrypt.IV.fromLength(8);
+  String encryptedTextEnvelope =
+      utf8.decode(base64Decode(encryptedTextAsBase64));
+
+  final key = encrypt.Key.fromUtf8(encryptionKey);
+  final ivAsBase64 = encryptedTextEnvelope.substring(
+      0, 12); // Salsa20 IV is 8 bytes length, base64 encoded is 12 chars long
+  final iv = encrypt.IV.fromBase64(ivAsBase64);
+  final encryptedTextOnlyAsBase64 = encryptedTextEnvelope.substring(12);
+
   final encrypter = encrypt.Encrypter(encrypt.Salsa20(key));
 
-  // Decrypt the text
-  final encryptedText = encrypt.Encrypted.fromBase64(encryptedTextAsBase64);
-  final decryptedText = encrypter.decrypt(encryptedText, iv: iv);
+  try {
+    final encryptedText =
+        encrypt.Encrypted.fromBase64(encryptedTextOnlyAsBase64);
+    final decryptedText = encrypter.decrypt(encryptedText, iv: iv);
 
-  return decryptedText;
+    return decryptedText;
+  } catch (e) {
+    print(e);
+    return null;
+  }
 }
