@@ -14,21 +14,18 @@ Future<String?> decryptTextFromBase64(
   String encryptedTextAsBase64,
   String encryptionKey,
 ) async {
-  print(encryptedTextAsBase64);
-  print(encryptionKey);
-
-  String encryptedTextEnvelope =
-      utf8.decode(base64Decode(encryptedTextAsBase64));
-
-  final key = encrypt.Key.fromUtf8(encryptionKey);
-  final ivAsBase64 = encryptedTextEnvelope.substring(
-      0, 12); // Salsa20 IV is 8 bytes length, base64 encoded is 12 chars long
-  final iv = encrypt.IV.fromBase64(ivAsBase64);
-  final encryptedTextOnlyAsBase64 = encryptedTextEnvelope.substring(12);
-
-  final encrypter = encrypt.Encrypter(encrypt.Salsa20(key));
-
   try {
+    String encryptedTextEnvelope =
+        utf8.decode(base64Decode(encryptedTextAsBase64));
+
+    final key = encrypt.Key.fromUtf8(encryptionKey);
+    final ivAsBase64 = encryptedTextEnvelope.substring(
+        0, 12); // Salsa20 IV is 8 bytes length, base64 encoded is 12 chars long
+    final iv = encrypt.IV.fromBase64(ivAsBase64);
+    final encryptedTextOnlyAsBase64 = encryptedTextEnvelope.substring(12);
+
+    final encrypter = encrypt.Encrypter(encrypt.Salsa20(key));
+
     final encryptedText =
         encrypt.Encrypted.fromBase64(encryptedTextOnlyAsBase64);
     final decryptedText = encrypter.decrypt(encryptedText, iv: iv);
