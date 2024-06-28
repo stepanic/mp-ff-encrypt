@@ -342,24 +342,52 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
                                           _model
                                               .encryptionKeyTextController.text,
                                         );
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(
-                                            content: Text(
-                                              _model.decryptedPlainText!,
-                                              style: TextStyle(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
+                                        if (_model.decryptedPlainText != null &&
+                                            _model.decryptedPlainText != '') {
+                                          // show success
+                                          ScaffoldMessenger.of(context)
+                                              .clearSnackBars();
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            SnackBar(
+                                              content: Text(
+                                                _model.decryptedPlainText!,
+                                                style: TextStyle(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                ),
                                               ),
+                                              duration: const Duration(
+                                                  milliseconds: 4000),
+                                              backgroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondary,
                                             ),
-                                            duration: const Duration(
-                                                milliseconds: 4000),
-                                            backgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .secondary,
-                                          ),
-                                        );
+                                          );
+                                        } else {
+                                          // show error
+                                          ScaffoldMessenger.of(context)
+                                              .clearSnackBars();
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            SnackBar(
+                                              content: Text(
+                                                'ERROR: decryption failed, please check encryption input key and text',
+                                                style: TextStyle(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                ),
+                                              ),
+                                              duration: const Duration(
+                                                  milliseconds: 4000),
+                                              backgroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .error,
+                                            ),
+                                          );
+                                        }
 
                                         setState(() {});
                                       },
