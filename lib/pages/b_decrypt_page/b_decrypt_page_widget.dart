@@ -69,7 +69,8 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
             Align(
               alignment: const AlignmentDirectional(0.0, 0.0),
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding:
+                    const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: Text(
                   'DEMO',
                   style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -126,6 +127,10 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
                             autofocus: true,
                             obscureText: false,
                             decoration: InputDecoration(
+                              //LOCAL_START
+                              floatingLabelBehavior:
+                                  FloatingLabelBehavior.always,
+                              //LOCAL_END
                               labelText: 'Encryption Key',
                               labelStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
@@ -196,6 +201,10 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
                                 autofocus: true,
                                 obscureText: false,
                                 decoration: InputDecoration(
+                                  //LOCAL_START
+                                  floatingLabelBehavior:
+                                      FloatingLabelBehavior.always,
+                                  //LOCAL_END
                                   labelText: 'Encrypted Text',
                                   labelStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
@@ -281,11 +290,11 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
                                   8.0, 0.0, 8.0, 0.0),
                               child: FFButtonWidget(
                                 onPressed: ((_model.encryptionKeyTextController
-                                                    .text ==
-                                                '') ||
+                                                .text ==
+                                            '') ||
                                         (_model.encryptedTextTextController
-                                                    .text ==
-                                                ''))
+                                                .text ==
+                                            ''))
                                     ? null
                                     : () async {
                                         // decrypt Base64 with key to plain text
@@ -307,8 +316,8 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
                                                         .primaryText,
                                               ),
                                             ),
-                                            duration:
-                                                const Duration(milliseconds: 4000),
+                                            duration: const Duration(
+                                                milliseconds: 4000),
                                             backgroundColor:
                                                 FlutterFlowTheme.of(context)
                                                     .secondary,
@@ -327,8 +336,9 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
                                   height: 40.0,
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       24.0, 0.0, 24.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 0.0),
+                                  iconPadding:
+                                      const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context).primary,
                                   textStyle: FlutterFlowTheme.of(context)
                                       .titleSmall
@@ -363,8 +373,8 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
                   child: Align(
                     alignment: const AlignmentDirectional(0.0, 1.0),
                     child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 24.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          0.0, 24.0, 0.0, 24.0),
                       child: InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
