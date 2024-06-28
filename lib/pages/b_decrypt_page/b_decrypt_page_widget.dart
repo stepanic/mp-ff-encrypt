@@ -150,9 +150,11 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
                           Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
+                              // AT InputDecoration ADD
                               // //LOCAL_START
                               // floatingLabelBehavior: FloatingLabelBehavior.always,
                               // //LOCAL_END
+                              // this ensure that hint text is always visible even input is not focused
                               Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 8.0, 0.0),
