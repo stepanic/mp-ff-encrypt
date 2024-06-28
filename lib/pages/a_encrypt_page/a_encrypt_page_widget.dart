@@ -275,80 +275,89 @@ class _AEncryptPageWidgetState extends State<AEncryptPageWidget> {
                                     .asValidator(context),
                               ),
                             ),
-                            if (_model.inputPlainTextTextController.text != '')
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    8.0, 0.0, 8.0, 0.0),
-                                child: FFButtonWidget(
-                                  onPressed: () async {
-                                    // generate encryptionKey
-                                    setState(() {
-                                      _model.encryptionKeyTextController?.text =
-                                          functions
-                                              .generateRandomEncryptionKey();
-                                      _model.encryptionKeyTextController
-                                              ?.selection =
-                                          TextSelection.collapsed(
-                                              offset: _model
-                                                  .encryptionKeyTextController!
-                                                  .text
-                                                  .length);
-                                    });
-                                    // encrypt Plain Text with Encryption Key
-                                    _model.encryptedTextAsBase64 =
-                                        await actions.encryptTextAsBase64(
-                                      _model.inputPlainTextTextController.text,
-                                      _model.encryptionKeyTextController.text,
-                                    );
-                                    // set Encrypted Text
-                                    setState(() {
-                                      _model.encryptedTextTextController?.text =
-                                          _model.encryptedTextAsBase64!;
-                                      _model.encryptedTextTextController
-                                              ?.selection =
-                                          TextSelection.collapsed(
-                                              offset: _model
-                                                  .encryptedTextTextController!
-                                                  .text
-                                                  .length);
-                                    });
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  8.0, 0.0, 8.0, 0.0),
+                              child: FFButtonWidget(
+                                onPressed: (_model.inputPlainTextTextController
+                                                .text ==
+                                            '')
+                                    ? null
+                                    : () async {
+                                        // generate encryptionKey
+                                        setState(() {
+                                          _model.encryptionKeyTextController
+                                                  ?.text =
+                                              functions
+                                                  .generateRandomEncryptionKey();
+                                          _model.encryptionKeyTextController
+                                                  ?.selection =
+                                              TextSelection.collapsed(
+                                                  offset: _model
+                                                      .encryptionKeyTextController!
+                                                      .text
+                                                      .length);
+                                        });
+                                        // encrypt Plain Text with Encryption Key
+                                        _model.encryptedTextAsBase64 =
+                                            await actions.encryptTextAsBase64(
+                                          _model.inputPlainTextTextController
+                                              .text,
+                                          _model
+                                              .encryptionKeyTextController.text,
+                                        );
+                                        // set Encrypted Text
+                                        setState(() {
+                                          _model.encryptedTextTextController
+                                                  ?.text =
+                                              _model.encryptedTextAsBase64!;
+                                          _model.encryptedTextTextController
+                                                  ?.selection =
+                                              TextSelection.collapsed(
+                                                  offset: _model
+                                                      .encryptedTextTextController!
+                                                      .text
+                                                      .length);
+                                        });
 
-                                    setState(() {});
-                                  },
-                                  text: 'Encrypt Plain Text',
-                                  icon: const Icon(
-                                    Icons.enhanced_encryption,
-                                    size: 24.0,
+                                        setState(() {});
+                                      },
+                                text: 'Encrypt Plain Text',
+                                icon: const Icon(
+                                  Icons.enhanced_encryption,
+                                  size: 24.0,
+                                ),
+                                options: FFButtonOptions(
+                                  width: double.infinity,
+                                  height: 40.0,
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      24.0, 0.0, 24.0, 0.0),
+                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        color: Colors.white,
+                                        letterSpacing: 0.0,
+                                      ),
+                                  elevation: 3.0,
+                                  borderSide: const BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1.0,
                                   ),
-                                  options: FFButtonOptions(
-                                    width: double.infinity,
-                                    height: 40.0,
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        24.0, 0.0, 24.0, 0.0),
-                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 0.0),
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          color: Colors.white,
-                                          letterSpacing: 0.0,
-                                        ),
-                                    elevation: 3.0,
-                                    borderSide: const BorderSide(
-                                      color: Colors.transparent,
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: const BorderRadius.only(
-                                      bottomLeft: Radius.circular(8.0),
-                                      bottomRight: Radius.circular(8.0),
-                                      topLeft: Radius.circular(0.0),
-                                      topRight: Radius.circular(0.0),
-                                    ),
+                                  borderRadius: const BorderRadius.only(
+                                    bottomLeft: Radius.circular(8.0),
+                                    bottomRight: Radius.circular(8.0),
+                                    topLeft: Radius.circular(0.0),
+                                    topRight: Radius.circular(0.0),
                                   ),
+                                  disabledColor: FlutterFlowTheme.of(context)
+                                      .secondaryText,
                                 ),
                               ),
+                            ),
                           ],
                         ),
                         if (_model.inputPlainTextTextController.text != '')
