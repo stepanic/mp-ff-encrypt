@@ -489,8 +489,7 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
                         // //LOCAL_START
                         // floatingLabelBehavior: FloatingLabelBehavior.always,
                         // //LOCAL_END
-                        if (_model.decryptedPlainText != null &&
-                            _model.decryptedPlainText != '')
+                        if (_model.decryptedTextTextController.text != '')
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 8.0, 0.0, 8.0, 0.0),
