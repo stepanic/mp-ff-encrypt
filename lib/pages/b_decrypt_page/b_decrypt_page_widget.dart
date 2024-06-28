@@ -3,12 +3,20 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'b_decrypt_page_model.dart';
 export 'b_decrypt_page_model.dart';
 
 class BDecryptPageWidget extends StatefulWidget {
-  const BDecryptPageWidget({super.key});
+  const BDecryptPageWidget({
+    super.key,
+    this.encryptionKey,
+    this.encryptedText,
+  });
+
+  final String? encryptionKey;
+  final String? encryptedText;
 
   @override
   State<BDecryptPageWidget> createState() => _BDecryptPageWidgetState();
@@ -23,6 +31,27 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => BDecryptPageModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      if ((widget.encryptionKey != null && widget.encryptionKey != '') &&
+          (widget.encryptedText != null && widget.encryptedText != '')) {
+        // set encryptionKey from param
+        setState(() {
+          _model.encryptionKeyTextController?.text = widget.encryptionKey!;
+          _model.encryptionKeyTextController?.selection =
+              TextSelection.collapsed(
+                  offset: _model.encryptionKeyTextController!.text.length);
+        });
+        // set encryptedText from param
+        setState(() {
+          _model.encryptedTextTextController?.text = widget.encryptedText!;
+          _model.encryptedTextTextController?.selection =
+              TextSelection.collapsed(
+                  offset: _model.encryptedTextTextController!.text.length);
+        });
+      }
+    });
 
     _model.encryptionKeyTextController ??= TextEditingController();
     _model.encryptionKeyFocusNode ??= FocusNode();

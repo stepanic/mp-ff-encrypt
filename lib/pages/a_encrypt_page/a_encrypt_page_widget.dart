@@ -772,6 +772,58 @@ class _AEncryptPageWidgetState extends State<AEncryptPageWidget> {
                               ),
                             ),
                           ),
+                        if (!isWeb &&
+                            (_model.encryptedTextTextController.text != ''))
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                8.0, 0.0, 8.0, 0.0),
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                // pass data to decrypt page
+
+                                context.pushNamed(
+                                  'bDecryptPage',
+                                  queryParameters: {
+                                    'encryptionKey': serializeParam(
+                                      _model.encryptionKeyTextController.text,
+                                      ParamType.String,
+                                    ),
+                                    'encryptedText': serializeParam(
+                                      _model.encryptedTextTextController.text,
+                                      ParamType.String,
+                                    ),
+                                  }.withoutNulls,
+                                );
+                              },
+                              text: 'Test Decryption',
+                              icon: const Icon(
+                                Icons.lock_open,
+                                size: 24.0,
+                              ),
+                              options: FFButtonOptions(
+                                width: double.infinity,
+                                height: 40.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    24.0, 0.0, 24.0, 0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).success,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: Colors.white,
+                                      letterSpacing: 0.0,
+                                    ),
+                                elevation: 3.0,
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                            ),
+                          ),
                       ].divide(const SizedBox(height: 24.0)),
                     ),
                   ),
