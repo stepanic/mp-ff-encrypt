@@ -5,7 +5,9 @@ import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'a_encrypt_page_model.dart';
@@ -28,6 +30,14 @@ class _AEncryptPageWidgetState extends State<AEncryptPageWidget> {
     super.initState();
     _model = createModel(context, () => AEncryptPageModel());
 
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      // reset workaround exchange variables
+      FFAppState().encryptionKey = '';
+      FFAppState().encryptedText = '';
+      setState(() {});
+    });
+
     _model.inputPlainTextTextController ??= TextEditingController();
     _model.inputPlainTextFocusNode ??= FocusNode();
 
@@ -49,6 +59,8 @@ class _AEncryptPageWidgetState extends State<AEncryptPageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
