@@ -4,19 +4,13 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'b_decrypt_page_model.dart';
 export 'b_decrypt_page_model.dart';
 
 class BDecryptPageWidget extends StatefulWidget {
-  const BDecryptPageWidget({
-    super.key,
-    this.encryptionKey,
-    this.encryptedText,
-  });
-
-  final String? encryptionKey;
-  final String? encryptedText;
+  const BDecryptPageWidget({super.key});
 
   @override
   State<BDecryptPageWidget> createState() => _BDecryptPageWidgetState();
@@ -34,18 +28,18 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if ((widget.encryptionKey != null && widget.encryptionKey != '') &&
-          (widget.encryptedText != null && widget.encryptedText != '')) {
+      if ((FFAppState().encryptionKey != '') &&
+          (FFAppState().encryptedText != '')) {
         // set encryptionKey from param
         setState(() {
-          _model.encryptionKeyTextController?.text = widget.encryptionKey!;
+          _model.encryptionKeyTextController?.text = FFAppState().encryptionKey;
           _model.encryptionKeyTextController?.selection =
               TextSelection.collapsed(
                   offset: _model.encryptionKeyTextController!.text.length);
         });
         // set encryptedText from param
         setState(() {
-          _model.encryptedTextTextController?.text = widget.encryptedText!;
+          _model.encryptedTextTextController?.text = FFAppState().encryptedText;
           _model.encryptedTextTextController?.selection =
               TextSelection.collapsed(
                   offset: _model.encryptedTextTextController!.text.length);
@@ -71,6 +65,8 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
