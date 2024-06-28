@@ -374,6 +374,28 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
                                                               .text
                                                               .length);
                                                 });
+                                                ScaffoldMessenger.of(context)
+                                                    .clearSnackBars();
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                  SnackBar(
+                                                    content: Text(
+                                                      'Decryption is successful. Please check the result on the form at `Decrypted Plain Text`.',
+                                                      style: TextStyle(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                      ),
+                                                    ),
+                                                    duration: const Duration(
+                                                        milliseconds: 4000),
+                                                    backgroundColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .secondary,
+                                                  ),
+                                                );
                                               } else {
                                                 // show error
                                                 ScaffoldMessenger.of(context)
