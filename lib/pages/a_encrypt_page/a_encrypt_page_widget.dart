@@ -182,7 +182,7 @@ class _AEncryptPageWidgetState extends State<AEncryptPageWidget> {
                               ),
                             ),
                           ),
-                        if (_model.encryptedTextTextController.text != '')
+                        if (_model.encryptedTextTextController.text == '')
                           Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
