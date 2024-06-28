@@ -53,8 +53,7 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
     _model.encryptedTextTextController ??= TextEditingController();
     _model.encryptedTextFocusNode ??= FocusNode();
 
-    _model.decryptedTextTextController ??=
-        TextEditingController(text: _model.decryptedPlainText);
+    _model.decryptedTextTextController ??= TextEditingController();
     _model.decryptedTextFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -146,72 +145,79 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              8.0, 0.0, 8.0, 0.0),
-                          child: TextFormField(
-                            controller: _model.encryptionKeyTextController,
-                            focusNode: _model.encryptionKeyFocusNode,
-                            autofocus: true,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              labelText: 'Encryption Key',
-                              labelStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    fontSize: 14.0,
-                                    letterSpacing: 0.0,
+                        Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  8.0, 0.0, 8.0, 0.0),
+                              child: TextFormField(
+                                controller: _model.encryptionKeyTextController,
+                                focusNode: _model.encryptionKeyFocusNode,
+                                autofocus: true,
+                                obscureText: false,
+                                decoration: InputDecoration(
+                                  labelText: 'Encryption Key',
+                                  labelStyle: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        fontSize: 14.0,
+                                        letterSpacing: 0.0,
+                                      ),
+                                  hintText:
+                                      'please insert the related encryption key',
+                                  hintStyle: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        letterSpacing: 0.0,
+                                      ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
-                              hintText:
-                                  'please insert the related encryption key',
-                              hintStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0.0,
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).alternate,
-                                  width: 2.0,
+                                  errorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  focusedErrorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
                                 ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              errorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              focusedErrorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      letterSpacing: 0.0,
+                                    ),
+                                maxLines: 2,
+                                minLines: 2,
+                                validator: _model
+                                    .encryptionKeyTextControllerValidator
+                                    .asValidator(context),
                               ),
                             ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
-                                ),
-                            maxLines: 2,
-                            minLines: 2,
-                            validator: _model
-                                .encryptionKeyTextControllerValidator
-                                .asValidator(context),
-                          ),
+                          ],
                         ),
                         Column(
                           mainAxisSize: MainAxisSize.max,
@@ -356,6 +362,19 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
                                                       .secondary,
                                             ),
                                           );
+                                          // set DecryptedText input
+                                          setState(() {
+                                            _model.decryptedTextTextController
+                                                    ?.text =
+                                                _model.decryptedPlainText!;
+                                            _model.decryptedTextTextController
+                                                    ?.selection =
+                                                TextSelection.collapsed(
+                                                    offset: _model
+                                                        .decryptedTextTextController!
+                                                        .text
+                                                        .length);
+                                          });
                                         } else {
                                           // show error
                                           ScaffoldMessenger.of(context)
@@ -488,8 +507,7 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
                                       letterSpacing: 0.0,
                                     ),
                                 alignLabelWithHint: false,
-                                hintText:
-                                    'please insert the base64 string which you want to decrypt',
+                                hintText: '???',
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
