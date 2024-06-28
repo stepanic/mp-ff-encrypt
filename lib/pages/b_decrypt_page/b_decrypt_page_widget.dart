@@ -192,6 +192,9 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
                         Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
+                            // //LOCAL_START
+                            // floatingLabelBehavior: FloatingLabelBehavior.always,
+                            // //LOCAL_END
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   8.0, 0.0, 8.0, 0.0),
@@ -213,6 +216,7 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
                                         fontSize: 14.0,
                                         letterSpacing: 0.0,
                                       ),
+                                  alignLabelWithHint: false,
                                   hintText:
                                       'please insert the base64 string which you want to decrypt',
                                   hintStyle: FlutterFlowTheme.of(context)
@@ -285,6 +289,10 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
                                     .asValidator(context),
                               ),
                             ),
+
+                            // //LOCAL_START
+                            // floatingLabelBehavior: FloatingLabelBehavior.always,
+                            // //LOCAL_END
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   8.0, 0.0, 8.0, 0.0),

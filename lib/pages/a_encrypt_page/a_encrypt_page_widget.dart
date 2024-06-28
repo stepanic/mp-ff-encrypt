@@ -175,6 +175,9 @@ class _AEncryptPageWidgetState extends State<AEncryptPageWidget> {
                         Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
+                            // //LOCAL_START
+                            // floatingLabelBehavior: FloatingLabelBehavior.always,
+                            // //LOCAL_END
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   8.0, 0.0, 8.0, 0.0),
