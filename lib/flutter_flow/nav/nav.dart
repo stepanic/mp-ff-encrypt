@@ -52,7 +52,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/decrypt',
           builder: (context, params) => params.isEmpty
               ? const NavBarPage(initialPage: 'bDecryptPage')
-              : const BDecryptPageWidget(),
+              : BDecryptPageWidget(
+                  encryptionKey: params.getParam(
+                    'encryptionKey',
+                    ParamType.String,
+                  ),
+                  encryptedText: params.getParam(
+                    'encryptedText',
+                    ParamType.String,
+                  ),
+                ),
         ),
         FFRoute(
           name: 'cAbout',
