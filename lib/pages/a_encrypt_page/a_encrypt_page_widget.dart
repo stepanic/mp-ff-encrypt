@@ -335,6 +335,18 @@ class _AEncryptPageWidgetState extends State<AEncryptPageWidget> {
                                 8.0, 0.0, 8.0, 0.0),
                             child: FFButtonWidget(
                               onPressed: () async {
+                                // focus Plain Text
+                                setState(() {
+                                  _model.inputPlainTextTextController?.text =
+                                      ' ';
+                                  _model.inputPlainTextTextController
+                                          ?.selection =
+                                      TextSelection.collapsed(
+                                          offset: _model
+                                              .inputPlainTextTextController!
+                                              .text
+                                              .length);
+                                });
                                 // Reset form
                                 setState(() {
                                   _model.inputPlainTextTextController?.clear();
