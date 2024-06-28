@@ -194,7 +194,6 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
                                 controller: _model.encryptedTextTextController,
                                 focusNode: _model.encryptedTextFocusNode,
                                 autofocus: true,
-                                readOnly: true,
                                 obscureText: false,
                                 decoration: InputDecoration(
                                   labelText: 'Encrypted Text',
