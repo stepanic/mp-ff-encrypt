@@ -20,6 +20,10 @@ class BDecryptPageModel extends FlutterFlowModel<BDecryptPageWidget> {
   String? Function(BuildContext, String?)? encryptedTextTextControllerValidator;
   // Stores action output result for [Custom Action - decryptTextFromBase64] action in DecryptEncryptedText widget.
   String? decryptedPlainText;
+  // State field(s) for DecryptedText widget.
+  FocusNode? decryptedTextFocusNode;
+  TextEditingController? decryptedTextTextController;
+  String? Function(BuildContext, String?)? decryptedTextTextControllerValidator;
 
   @override
   void initState(BuildContext context) {}
@@ -32,5 +36,8 @@ class BDecryptPageModel extends FlutterFlowModel<BDecryptPageWidget> {
 
     encryptedTextFocusNode?.dispose();
     encryptedTextTextController?.dispose();
+
+    decryptedTextFocusNode?.dispose();
+    decryptedTextTextController?.dispose();
   }
 }

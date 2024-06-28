@@ -53,6 +53,10 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
     _model.encryptedTextTextController ??= TextEditingController();
     _model.encryptedTextFocusNode ??= FocusNode();
 
+    _model.decryptedTextTextController ??=
+        TextEditingController(text: _model.decryptedPlainText);
+    _model.decryptedTextFocusNode ??= FocusNode();
+
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -430,7 +434,7 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
                                   _model.encryptedTextTextController?.clear();
                                 });
                               },
-                              text: 'Clear Form',
+                              text: 'Reset Decryption Form',
                               icon: const Icon(
                                 Icons.clear,
                                 size: 24.0,
@@ -457,6 +461,82 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
                                 ),
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
+                            ),
+                          ),
+
+                        // //LOCAL_START
+                        // floatingLabelBehavior: FloatingLabelBehavior.always,
+                        // //LOCAL_END
+                        if (_model.decryptedPlainText != null &&
+                            _model.decryptedPlainText != '')
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                8.0, 0.0, 8.0, 0.0),
+                            child: TextFormField(
+                              controller: _model.decryptedTextTextController,
+                              focusNode: _model.decryptedTextFocusNode,
+                              autofocus: false,
+                              readOnly: true,
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                labelText: 'Decrypted Plain Text',
+                                labelStyle: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      fontSize: 14.0,
+                                      letterSpacing: 0.0,
+                                    ),
+                                alignLabelWithHint: false,
+                                hintText:
+                                    'please insert the base64 string which you want to decrypt',
+                                hintStyle: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      letterSpacing: 0.0,
+                                    ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).error,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).error,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
+                              maxLines: 5,
+                              minLines: 5,
+                              validator: _model
+                                  .decryptedTextTextControllerValidator
+                                  .asValidator(context),
                             ),
                           ),
                       ].divide(const SizedBox(height: 24.0)),
