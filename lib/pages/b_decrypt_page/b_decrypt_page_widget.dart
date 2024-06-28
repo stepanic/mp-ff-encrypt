@@ -439,7 +439,7 @@ class _BDecryptPageWidgetState extends State<BDecryptPageWidget> {
                                   ),
                                 ],
                               ),
-                            ],
+                            ].divide(const SizedBox(height: 24.0)),
                           ),
                         if ((_model.encryptionKeyTextController.text !=
                                     '') ||
