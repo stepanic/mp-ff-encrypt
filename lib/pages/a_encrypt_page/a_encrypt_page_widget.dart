@@ -392,7 +392,7 @@ class _AEncryptPageWidgetState extends State<AEncryptPageWidget> {
                                   _model.encryptionKeyTextController?.clear();
                                 });
                               },
-                              text: 'Clear Plain Text',
+                              text: 'Reset Encryption Form',
                               icon: const Icon(
                                 Icons.clear,
                                 size: 24.0,
